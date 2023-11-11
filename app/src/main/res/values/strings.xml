@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MyNotes</string>
+    <string name="IntroducionMainActivity">Crea notas y recordatorios ilimitados totálmente gratis con MyNotes</string>
+    <string name="InicioDeSesion">Inicio de sesión</string>
+    <string name="ConGoogle">Con Google</string>
+    <string name="ConFacebook">Con Facebook</string>
+    <string name="O">O</string>
+    <string name="DireccionEmail">Direccion de email</string>
+    <string name="Contraseña">Contraseña</string>
+    <string name="IniciarSesion">Iniciar sesión</string>
+    <string name="Aúnnotienescuenta">¿Aún no tienes cuenta?</string>
+    <string name="Registrate">Regístrate</string>
+    <string name="Registrodeusuario">Registro de usuario</string>
+    <string name="usuario">Usuario *</string>
+    <string name="email">Email *</string>
+    <string name="contraseña">Contraseña *</string>
+    <string name="repetircontraseña">Repita su contraseña *</string>
+    <string name="numero">Teléfono</string>
+    <string name="registrarse">Registrarse</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

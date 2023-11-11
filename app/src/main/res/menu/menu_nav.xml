@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/homemenu"
+        android:title="Home"
+        android:icon="@drawable/hogar"/>
+    <item android:id="@+id/favoritesmenu"
+        android:title="Favotitos"
+        android:icon="@drawable/corazon"
+        />
+</menu>
