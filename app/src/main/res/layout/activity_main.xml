@@ -57,9 +57,9 @@
         android:layout_marginBottom="50dp"
         android:background="@drawable/estilo_boton"
         android:padding="15dp"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         android:onClick="navegarLogin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/flechaderecha" />
+        app:srcCompat="@drawable/flecha_pequena_derecha" />
 </androidx.constraintlayout.widget.ConstraintLayout>

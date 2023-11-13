@@ -30,6 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/frameLayout"
         app:menu="@menu/menu_nav"
         android:paddingBottom="20dp"
-        app:itemTextColor="@color/FondoApp"
-        app:itemIconTint="@color/FondoApp" />
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+        android:outlineAmbientShadowColor="@color/white"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
