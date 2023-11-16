@@ -21,6 +21,12 @@ class MyAdapter(private val dataList: List<DataModel>) : RecyclerView.Adapter<My
         val data = dataList[position]
         holder.titulo.text = data.titulo
         holder.descripcion.text = data.descripcion
+        holder.descripcion.visibility = if (data.expand) View.VISIBLE else View.GONE
+
+        holder.itemView.setOnClickListener {
+            data.expand = !data.expand
+            notifyItemChanged(position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -30,6 +36,5 @@ class MyAdapter(private val dataList: List<DataModel>) : RecyclerView.Adapter<My
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var titulo: TextView = itemView.findViewById(R.id.tvTituloCard)
         var descripcion: TextView = itemView.findViewById(R.id.tvDescripcionCard)
-        var card: CardView = itemView.findViewById(R.id.cardview)
     }
 }

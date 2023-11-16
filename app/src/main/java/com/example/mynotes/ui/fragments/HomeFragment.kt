@@ -7,14 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mynotes.R
+import com.example.mynotes.databinding.FragmentHomeBinding
 import com.example.mynotes.ui.adapters.MyAdapter
 import com.example.mynotes.ui.models.DataModel
 
 
 class HomeFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -26,9 +28,8 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-        recyclerView = view.findViewById(R.id.recyclerview)
-        return view
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,21 +39,21 @@ class HomeFragment : Fragment() {
 
     fun recyclerView(){
         // Configura el LayoutManager
-        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(requireContext(), 2)
-        recyclerView.layoutManager = layoutManager
+        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(requireContext(), 1)
+        binding.recyclerview.layoutManager = layoutManager
 
         // Crea una lista de datos que se mostrarán en el RecyclerView
         val dataList: List<DataModel> = createDataList()
 
         // Crea una instancia del adaptador y asígnalo al RecyclerView
         val adapter: MyAdapter = MyAdapter(dataList)
-        recyclerView.adapter = adapter
+        binding.recyclerview.adapter = adapter
     }
 
     private fun createDataList(): List<DataModel> {
         val dataList: MutableList<DataModel> = mutableListOf()
-        dataList.add(DataModel("Título 1", "Descripción 1"))
-        dataList.add(DataModel("Título 2", "Descripción 2"))
+        dataList.add(DataModel("Receta macarrones", "Macarrones \nsal \ntomate \nagua", false))
+        dataList.add(DataModel("Deuda mama gasoi", "20€", false))
         // Agrega más elementos según sea necesario
         return dataList
     }

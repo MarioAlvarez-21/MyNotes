@@ -3,22 +3,22 @@ package com.example.mynotes.ui.activitys
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.WindowManager
-import android.widget.ImageButton
-import com.example.mynotes.R
+import com.example.mynotes.databinding.ActivityMainBinding
 
-private lateinit var botonMain: ImageButton
+private lateinit var binding: ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         fullScreen()
 
-        botonMain = findViewById(R.id.botonMain)
+        navegarLogin()
+
     }
 
     fun fullScreen(){
@@ -27,8 +27,10 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 
-    fun navegarLogin(view : View){
-        var intent = Intent(this, Login::class.java)
-        startActivity(intent)
+    fun navegarLogin(){
+        binding.botonMain.setOnClickListener{
+            startActivity(Intent(this, Login::class.java))
+        }
+
     }
 }

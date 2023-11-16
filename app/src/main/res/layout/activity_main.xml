@@ -53,13 +53,14 @@
         android:id="@+id/botonMain"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginTop="190dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/estilo_boton"
         android:padding="15dp"
         android:scaleType="centerCrop"
-        android:onClick="navegarLogin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:srcCompat="@drawable/flecha_pequena_derecha" />
 </androidx.constraintlayout.widget.ConstraintLayout>

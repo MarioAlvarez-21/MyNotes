@@ -4,27 +4,27 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import com.example.mynotes.R
+import com.example.mynotes.databinding.ActivityInicioBinding
 import com.example.mynotes.ui.fragments.FavoritosFragment
 import com.example.mynotes.ui.fragments.HomeFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
-lateinit var BNV : BottomNavigationView
+private lateinit var binding: ActivityInicioBinding
 
 class Inicio : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_inicio)
+        binding = ActivityInicioBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         fullScreen()
 
-        BNV = findViewById(R.id.botonNavegationView)
-
+        //Agrega e inicia HomeFragment
         supportFragmentManager.beginTransaction().add(R.id.frameLayout, HomeFragment()).commit()
         funcionBottomNavegationView()
     }
 
     fun funcionBottomNavegationView(){
-        BNV.setOnItemSelectedListener{
+        binding.botonNavegationView.setOnItemSelectedListener{
             when(it.itemId){
                 R.id.homemenu -> supportFragmentManager.beginTransaction().replace(R.id.frameLayout, HomeFragment()).commit()
                 R.id.favoritesmenu -> supportFragmentManager.beginTransaction().replace(R.id.frameLayout, FavoritosFragment()).commit()
