@@ -54,6 +54,8 @@ class HomeFragment : Fragment() {
         val dataList: MutableList<DataModel> = mutableListOf()
         dataList.add(DataModel("Receta macarrones", "Macarrones \nsal \ntomate \nagua", false))
         dataList.add(DataModel("Deuda mama gasoi", "20€", false))
+        dataList.add(DataModel("Edu me debe 55€", "Edu me debe 55€ del finde que fuimos al club y le pague " +
+                "una piba porque no tenia perras", false))
         // Agrega más elementos según sea necesario
         return dataList
     }

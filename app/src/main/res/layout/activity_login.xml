@@ -20,6 +20,7 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btn_Google"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -123,7 +124,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/ET_email_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -187,7 +188,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/ET_password_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -205,7 +206,7 @@
         android:drawablePadding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/ET_email_login" />
 
     <Button
         android:id="@+id/button"
@@ -219,7 +220,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/ET_password_login" />
 
     <View
         android:id="@+id/view4"
