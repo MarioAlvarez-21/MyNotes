@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.example.mynotes.R
 import com.example.mynotes.databinding.ActivityRegistrarseBinding
 import com.example.mynotes.ui.models.Usuario
+import com.google.firebase.auth.ActionCodeSettings
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -60,6 +61,7 @@ class Registrarse : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
+                            sendEmailVerification()
                             // Sign in success, update UI with the signed-in user's information
                             val user = auth.currentUser
                             val userId = user?.uid
@@ -69,7 +71,7 @@ class Registrarse : AppCompatActivity() {
                             // Store the user data in Firebase Realtime Database
                             database.child("Usuarios").child(userId!!).setValue(userData)
 
-                            Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Usuario registrado con éxito, revise su correo para activar la cuenta", Toast.LENGTH_SHORT).show()
                             finish()
                         } else {
                             Toast.makeText(this, "El email ya existe, prueba con otro", Toast.LENGTH_SHORT).show()
@@ -80,9 +82,20 @@ class Registrarse : AppCompatActivity() {
             }
 
         }
-
-
     }
+
+    //Envia un correo al usuario para que verefique su cuenta
+    private fun sendEmailVerification(){
+        var user = auth.currentUser!!
+        user.sendEmailVerification().addOnCompleteListener(this){task ->
+            if (task.isSuccessful){
+                Toast.makeText(this, "Revisa tu correo para verificar la cuenta", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this, "Error al enviar correo de verificación", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
     fun validarUsuario():Boolean{
         email = binding.ETEmailRegistro.text.toString()

@@ -60,6 +60,9 @@ class Login : AppCompatActivity() {
         binding.btnGoogle.setOnClickListener{
             signIn()
         }
+        binding.TVRestablecerContraseA.setOnClickListener(){
+            startActivity(Intent(this, RestaurarContrasenia::class.java))
+        }
     } //Acciones de los botones
 
     private fun fullScreen(){
@@ -80,9 +83,14 @@ class Login : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         val user = auth.currentUser
-                        Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, Inicio::class.java))
-                        finish()
+                        if(user?.isEmailVerified == true){
+                            Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, Inicio::class.java))
+                            finish()
+                        }else{
+                            Toast.makeText(this, "Cuenta pendiente de verificación", Toast.LENGTH_SHORT).show()
+                        }
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Toast.makeText(this, "Email o contraseña incorrectos", Toast.LENGTH_SHORT).show()

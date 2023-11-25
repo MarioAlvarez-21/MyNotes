@@ -10,8 +10,8 @@
         android:background="@color/FondoApp">
 
         <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="50dp"
+            android:id="@+id/navegationDrawer"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="50dp"
@@ -22,14 +22,14 @@
             app:tint="@color/blancoDifuminado"/>
 
         <ImageButton
-            android:id="@+id/imageButton5"
-            android:layout_width="50dp"
+            android:id="@+id/BT_CrearNota_Inicio"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/crear_nota"
+            app:srcCompat="@drawable/agregar"
             android:background="@drawable/estilo_boton_transparente"
             app:tint="@color/blancoDifuminado"/>
 
@@ -38,8 +38,8 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="50dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton5"
-            app:layout_constraintStart_toEndOf="@+id/imageButton4"
+            app:layout_constraintEnd_toStartOf="@+id/BT_CrearNota_Inicio"
+            app:layout_constraintStart_toEndOf="@+id/navegationDrawer"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/publicalo" />
 
@@ -67,7 +67,7 @@
             app:layout_constraintTop_toBottomOf="@+id/frameLayout"
             app:menu="@menu/menu_nav"
             android:paddingBottom="20dp"
-            app:itemTextColor="@color/white"
+            app:itemTextColor="@color/color_seleccionado_navegation_icono"
             app:itemIconTint="@color/white"
             android:outlineAmbientShadowColor="@color/white"/>
 

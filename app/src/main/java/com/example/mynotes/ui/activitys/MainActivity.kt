@@ -6,11 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
+import android.widget.Toast
 import com.example.mynotes.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 private lateinit var binding: ActivityMainBinding
+private lateinit var auth: FirebaseAuth
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,13 +22,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         fullScreen()
 
-        //baseDeDatos()
-
+        auth = Firebase.auth
+        usuarioConectado()
         navegarLogin()
 
+    }
+
+    fun usuarioConectado(){//Busco si hay algun usuario logueado activamente
+        var user = auth.currentUser
+        if (user != null) {
+            startActivity(Intent(this, Inicio::class.java));
+            finish()
+        } else {
+            Toast.makeText(this, "No hay usuario autenticado.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     fun fullScreen(){
@@ -40,24 +53,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-    /*fun baseDeDatos(){
-        val db = Firebase.firestore
-
-        val city = hashMapOf(
-            "name" to "Los Angeles",
-            "state" to "CA",
-            "country" to "USA"
-        )
-
-        db.collection("cities")
-            .add(city)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }
-
-    }*/
 }
