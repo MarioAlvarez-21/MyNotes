@@ -55,7 +55,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="190dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/estilo_boton"
         android:padding="15dp"
         android:scaleType="centerCrop"
@@ -63,4 +63,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:srcCompat="@drawable/flecha_pequena_derecha" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        style="@style/Base.Theme.MyNotes"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="548dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

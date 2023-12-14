@@ -39,7 +39,7 @@ class Login : AppCompatActivity() {
         setContentView(binding.root)
 
         //Pantalla completa
-        fullScreen()
+        //fullScreen()
 
         botones()
         inicioGoogle()
@@ -150,21 +150,22 @@ class Login : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Inicio de sesión exitoso
 
-                    // Obtener una referencia a la base de datos de Firebase
-                    val database = Firebase.database
-
                     // Crear un objeto User para almacenar la información del usuario
                     val user = auth.currentUser
                     val usuario = user?.displayName?: "No disponible"
                     val correo = user?.email?: "No disponible"
-                    val telefono =  user?.phoneNumber?: "No disponible"
 
-                    val userObject = Usuario(usuario, correo, telefono)
+                    val userObject = Usuario(usuario, correo)
+
+                    // Obtener una referencia a la base de datos de Firebase
+                    val database = Firebase.database.getReference("Usuarios/${user?.uid}")
 
                     // Almacenar la información del usuario en la base de datos de Firebase
                     //, actualizar la interfaz de usuario con la información del usuario
-                    if (user != null) {
-                        database.getReference("Usuarios").child(user.uid).setValue(userObject)
+                    if (database == null) {
+                        database.setValue(userObject)
+                        updateUI(user)
+                    }else{
                         updateUI(user)
                     }
                 } else {

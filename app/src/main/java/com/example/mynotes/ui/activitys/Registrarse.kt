@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.view.WindowManager
+import android.widget.EditText
 import android.widget.Toast
 import com.example.mynotes.R
 import com.example.mynotes.databinding.ActivityRegistrarseBinding
@@ -30,8 +31,7 @@ class Registrarse : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistrarseBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        fullScreen()
+        //fullScreen()
 
         botones()
 
@@ -66,7 +66,7 @@ class Registrarse : AppCompatActivity() {
                             val user = auth.currentUser
                             val userId = user?.uid
 
-                            val userData = Usuario(usuario, email, telefono)
+                            val userData = Usuario(usuario, email)
 
                             // Store the user data in Firebase Realtime Database
                             database.child("Usuarios").child(userId!!).setValue(userData)
@@ -102,7 +102,6 @@ class Registrarse : AppCompatActivity() {
         password = binding.ETPasswordRegistro.text.toString()
         usuario = binding.ETUsuarioRegistro.text.toString()
         repetirPassword = binding.ETRepetirPasswordRegistro.text.toString()
-        telefono = binding.ETTelefonoRegistro.text.toString()
 
         if(usuario.isEmpty()){
             binding.ETUsuarioRegistro.setError("Ingresa un nombre de usuario")

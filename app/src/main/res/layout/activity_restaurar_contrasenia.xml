@@ -11,7 +11,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="84dp"
         android:fontFamily="@font/roboto"
         android:text="Restablecer contraseña"
         android:textColor="@color/white"
@@ -29,7 +29,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="25dp"
         android:backgroundTint="#FFFFFF"
-        android:drawableStart="@drawable/sobre"
+        android:drawableStart="@drawable/sobre16dp"
         android:drawablePadding="10dp"
         android:drawableTint="#82FFFFFF"
         android:ems="10"
@@ -61,10 +61,11 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/estilo_boton_transparente"
+        android:src="@drawable/angulo_izquierdo24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/anguloizquierdo"/>
+        app:tint="@color/blancoDifuminado" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

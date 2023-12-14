@@ -19,7 +19,7 @@ class RestaurarContrasenia : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRestaurarContraseniaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        fullScreen()
+        //fullScreen()
 
         botones()
 

@@ -4,4 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="FondoApp">#002F35</color>
     <color name="blancoDifuminado">#82FFFFFF</color>
+    <color name="colorNota">#FFC107</color>
+    <color name="FondoAppNotasOcultas">#FF001E22</color>
+    <color name="presionado">#005A66</color>
+    <color name="boton">#009688</color>
 </resources>

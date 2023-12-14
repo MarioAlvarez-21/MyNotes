@@ -9,18 +9,35 @@
     <style name="Theme.MyNotes" parent="Base.Theme.MyNotes" />
 
     <style name="Theme.AppCompat.NoActionBar.FullScreen" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@color/FondoApp</item>
+        <item name="android:navigationBarColor">@color/FondoApp</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorOnSecondary">@color/white</item>
     </style>
+
+    <style name="Theme.AppCompat.NoActionBar.FullScreenNotasOcultas" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/FondoAppNotasOcultas</item>
+        <item name="android:navigationBarColor">@color/FondoAppNotasOcultas</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+    </style>
+
+
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
         <item name="searchIcon">@drawable/busqueda</item>
         <item name="android:textColor">@color/white</item> <!-- Color rojo -->
         <item name="android:textSize">9sp</item> <!-- Tamaño de letra de 16sp -->
         <item name="queryHint">Busca una nota</item>
     </style>
+
+    <!-- <style name="Theme.AppCompat.NoActionBar.FullScreen" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+    </style> Diseño full screen con action bar y status bar transparentes-->
+
 
 </resources>

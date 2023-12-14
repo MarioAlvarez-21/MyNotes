@@ -4,10 +4,14 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-data class Nota(var titulo: String,
-                var descripcion: String,
+data class Nota(var id:String?,
+                var titulo: String?,
+                var descripcion: String?,
                 var fecha:String = obtenerFechaActual(),
                 var expand: Boolean = false, ) {
+
+    // Constructor vacío requerido para Firebase
+    constructor() : this(null, "", "")
     companion object {
         // Función estática para obtener la fecha actual en un formato específico
         private fun obtenerFechaActual(): String {

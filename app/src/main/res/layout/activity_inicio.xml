@@ -9,67 +9,83 @@
         android:layout_height="match_parent"
         android:background="@color/FondoApp">
 
-        <ImageButton
-            android:id="@+id/navegationDrawer"
-            android:layout_width="wrap_content"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarInicio"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="50dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/menu_hamburguesa"
-            android:background="@drawable/estilo_boton_transparente"
-            app:tint="@color/blancoDifuminado"/>
-
-        <ImageButton
-            android:id="@+id/BT_CrearNota_Inicio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="25dp"
+            android:background="@color/FondoApp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/agregar"
-            android:background="@drawable/estilo_boton_transparente"
-            app:tint="@color/blancoDifuminado"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="50dp"
-            app:layout_constraintEnd_toStartOf="@+id/BT_CrearNota_Inicio"
-            app:layout_constraintStart_toEndOf="@+id/navegationDrawer"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/publicalo" />
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:srcCompat="@drawable/publicalo"
+                    android:layout_gravity="center|top"/>
+
+                <ImageButton
+                    android:id="@+id/BT_CrearNota_Inicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|end"
+                    android:background="@drawable/estilo_boton_transparente"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/agregar"
+                    app:tint="@color/blancoDifuminado" />
+
+                <ImageButton
+                    android:id="@+id/navegationDrawer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center"
+                    android:background="@drawable/estilo_boton_transparente"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/menu_hamburguesa"
+                    app:tint="@color/blancoDifuminado" />
+
+                <!-- Aquí puedes agregar tus otros elementos superiores -->
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="80dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/botonNavegationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6">
+            app:layout_constraintTop_toBottomOf="@+id/appBarInicio">
 
         </FrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/botonNavegationView"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="65dp"
             android:background="@drawable/estilo_menu_navegacion"
+            android:outlineAmbientShadowColor="@color/white"
+            android:paddingTop="15dp"
+            android:paddingBottom="1dp"
+            app:itemIconSize="20dp"
+            app:itemIconTint="@color/color_seleccionado"
+            app:itemTextColor="@color/color_seleccionado_navegation_icono"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-            app:menu="@menu/menu_nav"
-            android:paddingBottom="20dp"
-            app:itemTextColor="@color/color_seleccionado_navegation_icono"
-            app:itemIconTint="@color/white"
-            android:outlineAmbientShadowColor="@color/white"/>
+            app:menu="@menu/menu_nav" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -78,11 +94,12 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/menu_drawer"
-        app:headerLayout="@layout/encabezado_drawer"
         android:background="@drawable/estilo_drawer"
-        app:itemBackground="@drawable/fondo_item_drawer"
-        app:itemTextColor="@color/color_seleccionado"
-        app:itemIconTint="@color/color_seleccionado"/>
+        android:theme="@style/Theme.Material3.Dark"
+        app:headerLayout="@layout/encabezado_drawer"
+        app:itemIconSize="20dp"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/menu_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/estilo_menu_navegacion">
+    android:background="@drawable/estilo_alert_dialog">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tv_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -31,28 +31,29 @@
         android:ems="10"
         android:gravity="center"
         android:hint="Titulo"
-        android:inputType="text"
+        android:inputType="textCapSentences|textCapWords"
+        android:maxLength="30"
         android:textColor="@color/white"
         android:textColorHint="@color/blancoDifuminado"
-        android:maxLength="30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_dialog" />
 
     <MultiAutoCompleteTextView
         android:id="@+id/ET_descripcion_dialog"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
         android:backgroundTint="#00FFFFFF"
+        android:fontFamily="@font/roboto"
         android:gravity="start"
         android:hint="Descripción"
+        android:inputType="textCapSentences|textMultiLine"
         android:textColor="@color/white"
         android:textColorHint="@color/blancoDifuminado"
         android:textSize="15sp"
-        android:fontFamily="@font/roboto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ET_titulo_dialog" />
@@ -60,8 +61,8 @@
     <Button
         android:id="@+id/BT_crear_dialog"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/estilo_boton"
@@ -75,8 +76,8 @@
     <Button
         android:id="@+id/BT_cancelar_dialog"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/estilo_boton_transparente"

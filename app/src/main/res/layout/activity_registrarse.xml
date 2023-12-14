@@ -29,7 +29,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="25dp"
         android:backgroundTint="#FFFFFF"
-        android:drawableStart="@drawable/usuario"
+        android:drawableStart="@drawable/usuario16dp"
         android:drawableTint="@color/blancoDifuminado"
         android:drawablePadding="10dp"
         android:ems="10"
@@ -55,7 +55,7 @@
         android:hint="@string/email"
         android:textSize="15sp"
         android:textColorHint="@color/blancoDifuminado"
-        android:drawableStart="@drawable/sobre"
+        android:drawableStart="@drawable/sobre16dp"
         android:drawableTint="@color/blancoDifuminado"
         android:paddingBottom="20dp"
         android:drawablePadding="10dp"
@@ -76,7 +76,7 @@
         android:hint="@string/contraseña"
         android:textSize="15sp"
         android:textColorHint="@color/blancoDifuminado"
-        android:drawableStart="@drawable/cerrar"
+        android:drawableStart="@drawable/cerrar16dp"
         android:drawableTint="@color/blancoDifuminado"
         android:paddingBottom="20dp"
         android:drawablePadding="10dp"
@@ -97,34 +97,13 @@
         android:hint="@string/repetircontraseña"
         android:textSize="15sp"
         android:textColorHint="@color/blancoDifuminado"
-        android:drawableStart="@drawable/cerrar"
+        android:drawableStart="@drawable/cerrar16dp"
         android:drawableTint="@color/blancoDifuminado"
         android:paddingBottom="20dp"
         android:drawablePadding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ET_password_registro" />
-
-    <EditText
-        android:id="@+id/ET_telefono_registro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="25dp"
-        android:ems="10"
-        android:inputType="phone"
-        android:backgroundTint="#FFFFFF"
-        android:hint="@string/numero"
-        android:textSize="15sp"
-        android:textColorHint="@color/blancoDifuminado"
-        android:drawableStart="@drawable/telefono_inteligente"
-        android:drawableTint="@color/blancoDifuminado"
-        android:paddingBottom="20dp"
-        android:drawablePadding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ET_repetir_password_registro" />
 
     <Button
         android:id="@+id/btn_registrar"
@@ -137,8 +116,9 @@
         android:text="@string/registrarse"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ET_telefono_registro" />
+        app:layout_constraintTop_toBottomOf="@+id/ET_repetir_password_registro" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -149,5 +129,6 @@
         android:background="@drawable/estilo_boton_transparente"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/anguloizquierdo" />
+        app:srcCompat="@drawable/angulo_izquierdo24dp"
+        app:tint="@color/blancoDifuminado"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

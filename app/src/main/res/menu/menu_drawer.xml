@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="none">
         <item
-            android:id="@+id/nav_home"
-            android:title="Home"
-            android:icon="@drawable/hogar"/>
+            android:id="@+id/nav_oculto"
+            android:title="Notas ocultas"
+            android:icon="@drawable/cerrar"/>
+        <item
+            android:id="@+id/nav_imc"
+            android:title="IMC"
+            android:icon="@drawable/imc"/>
         <item
             android:id="@+id/nav_settings"
             android:title="Ajustes"
@@ -12,7 +16,7 @@
     </group>
     <item android:title="Mas opciones">
         <menu>
-            <group android:checkableBehavior="single">
+            <group android:checkableBehavior="none">
                 <item
                     android:id="@+id/nav_logout"
                     android:title="Cerrar sesión"

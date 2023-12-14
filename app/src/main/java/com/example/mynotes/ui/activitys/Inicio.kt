@@ -7,19 +7,17 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.MultiAutoCompleteTextView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
-import androidx.databinding.DataBindingUtil
 import com.example.mynotes.R
 import com.example.mynotes.databinding.ActivityInicioBinding
-import com.example.mynotes.databinding.DialogCrearNotaBinding
 import com.example.mynotes.ui.fragments.FavoritosFragment
 import com.example.mynotes.ui.fragments.HomeFragment
 import com.example.mynotes.ui.models.Nota
@@ -30,9 +28,12 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 private lateinit var binding: ActivityInicioBinding
-val database = FirebaseDatabase.getInstance()
-val reference = database.getReference("Notas/ebgLaec2tbZ5KFTFH6vuv5zvFer2")
+
 private lateinit var auth: FirebaseAuth
+private var user = Firebase.auth.currentUser?.uid
+val database = FirebaseDatabase.getInstance()
+val reference = database.getReference("Notas/${user}")
+
 
 class Inicio : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -41,7 +42,6 @@ class Inicio : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListe
         super.onCreate(savedInstanceState)
         binding = ActivityInicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        fullScreen()
 
         auth = Firebase.auth //Inicia laautenticacion de firebase
 
@@ -58,39 +58,26 @@ class Inicio : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListe
 
     }
 
-    fun cerrar(){
-        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (supportFragmentManager.backStackEntryCount > 0) {
-                    supportFragmentManager.popBackStack()
-                } else {
-                    finish()
-                }
-            }
-        })
-    }
-
 
 
     fun cerrarSesion(){
 
-        if(auth != null){
-            auth.signOut()
-            Toast.makeText(this, "Cierre de sesion correcto", Toast.LENGTH_SHORT).show()
-            // Redirect to the login activity
-            startActivity(Intent(this, Login::class.java))
-            finish()
-        }else{
-            Toast.makeText(this, "El usuario es nulo???", Toast.LENGTH_SHORT).show()
-        }
+        auth.signOut()
+        Toast.makeText(this, "Cierre de sesion correcto", Toast.LENGTH_SHORT).show()
+        // Al cerrar sesion me manda al activity de login
+        startActivity(Intent(this, Login::class.java))
+        finish()
     }
 
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_home -> {
+            R.id.nav_oculto -> {
                 // Manejar clic en "Home"
-                Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, NotasOcultas::class.java))
+            }
+            R.id.nav_imc ->{
+                startActivity(Intent(this, IMC::class.java))
             }
             R.id.nav_settings -> {
                 // Manejar clic en "Settings"
@@ -167,13 +154,20 @@ class Inicio : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListe
 
     private fun crearNota(titulo:EditText, descripcion:EditText, dialog: AlertDialog){
 
+        // Obtener el ID del usuario actual
+        val user = Firebase.auth.currentUser?.uid
+
         // Crear un objeto Map para guardar los datos de la nota
         val tituloAsignado = titulo.text.toString()
         val descripcionAsignado = descripcion.text.toString()
-        val nota = Nota(tituloAsignado?:"Sin titulo", descripcionAsignado?:"Sin descripcion")
+        val nota = Nota(reference.push().key, tituloAsignado, descripcionAsignado)
+
+        // Crear una referencia a la base de datos de Firebase
+        val database = FirebaseDatabase.getInstance()
+        val reference = database.getReference("Notas/${user}")
 
         // Guardar la nota en Firebase
-        reference.push().setValue(nota)
+        reference.child(nota.id?:"").setValue(nota)
             .addOnSuccessListener {
                 // La nota se guardó con éxito
                 Toast.makeText(this, "Nota creada con éxito", Toast.LENGTH_SHORT).show()
@@ -186,12 +180,5 @@ class Inicio : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListe
                 Toast.makeText(this, "Ha habido un problema al crear la nota", Toast.LENGTH_SHORT).show()
                 false
             }
-    }
-
-
-    fun fullScreen(){
-        getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }
