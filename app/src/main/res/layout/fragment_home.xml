@@ -1,40 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/FondoApp"
-    tools:context=".ui.fragments.HomeFragment">
+    android:background="@color/FondoApp">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/FondoApp"
+        android:fitsSystemWindows="true"
+        android:paddingEnd="10dp"
+        android:paddingTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:nestedScrollingEnabled="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchview" />
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchview"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="25dp"
-            android:theme="@style/Theme.Material3.Dark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+            <ImageButton
+                android:id="@+id/BT_NotasOcultas_FragmentHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/estilo_boton_transparente"
+                app:srcCompat="@drawable/cerrar"
+                android:layout_gravity="start"
+                app:tint="@color/blancoDifuminado" />
+            <ImageButton
+                android:id="@+id/BT_CalcularIMC_FragmentHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/estilo_boton_transparente"
+                app:srcCompat="@drawable/imc"
+                android:layout_gravity="start"
+                app:tint="@color/blancoDifuminado"/>
+
+            <ImageButton
+                android:id="@+id/BT_CrearNota_FragmentHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|end"
+                android:background="@drawable/estilo_boton_transparente"
+                app:srcCompat="@drawable/agregar"
+                app:tint="@color/blancoDifuminado" />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|end"
+                app:searchIcon="@drawable/busqueda"
+                android:theme="@style/Theme.Material3.Dark" />
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:listitem="@layout/item_cardview" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

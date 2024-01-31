@@ -17,17 +17,22 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynotes.R
-import com.example.mynotes.ui.activitys.reference
+import com.example.mynotes.ui.funciones.Funciones
 import com.example.mynotes.ui.models.Nota
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 
 class AdapterRecyclerViewNotas(private val dataList: List<Nota>) : RecyclerView.Adapter<AdapterRecyclerViewNotas.ViewHolder>() {
+
+    private var user = Firebase.auth.currentUser?.uid
+    private val database = FirebaseDatabase.getInstance()
+    private var reference = database.getReference("Usuario/${user}/Notas")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_cardview, parent, false)
@@ -72,7 +77,7 @@ class AdapterRecyclerViewNotas(private val dataList: List<Nota>) : RecyclerView.
 
             // Configurar los botones
             bt_crear.setOnClickListener {
-                editarNota(contexto, data.id!!, et_titulo.text.toString(), et_descripcion.text.toString())
+                Funciones.editarNota(contexto, data.id!!, et_titulo.text.toString(), et_descripcion.text.toString())
                 dialog.dismiss()
 
             }
@@ -86,116 +91,14 @@ class AdapterRecyclerViewNotas(private val dataList: List<Nota>) : RecyclerView.
         }
 
         holder.eliminar.setOnClickListener(){
-            eliminarNota(contexto, data.id!!)
+            Funciones.eliminarNota(contexto, data.id!!, reference)
         }
         holder.ocultar.setOnClickListener(){
             val id = data.id!!
             val titulo = holder.titulo.text.toString()
             val descripcion = holder.descripcion.text.toString()
-            ocultarNota(contexto, id, titulo, descripcion)
-            eliminarNota(contexto, id)
+            Funciones.ocultarNota(contexto, id, titulo, descripcion)
         }
-    }
-
-    private fun eliminarNota(context: Context, notaId: String){
-
-        val user = FirebaseAuth.getInstance().currentUser
-
-        val database = FirebaseDatabase.getInstance().getReference("Notas");
-
-        if(user != null){
-            val userId = user.uid
-            val likesRef = database.child(userId).child(notaId)
-            likesRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    try {
-                        if (snapshot.exists()) {
-                            // El modelo ya está en la lista de "me gusta", eliminarlo
-                            likesRef.removeValue();
-                            Toast.makeText(context, "Nota eliminada con exito", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(context, "¿Nota no existe?", Toast.LENGTH_SHORT).show();
-                        }
-                    }catch (e:Exception){
-                        Toast.makeText(context, "Error al eliminar nota", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    // Manejar error
-                }
-            })
-        }
-
-    }
-
-    private fun editarNota(context: Context, notaId: String, nuevoTitulo: String, nuevaDescripcion: String){
-
-        val user = FirebaseAuth.getInstance().currentUser
-        val database = FirebaseDatabase.getInstance().getReference("Notas");
-
-
-        if(user != null){
-            val userId = user.uid
-            val notaRef = database.child(userId).child(notaId)
-            notaRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    try {
-                        if (snapshot.exists()) {
-                            // La nota existe, actualizarla
-                            val notaActualizada = Nota(notaId, nuevoTitulo, nuevaDescripcion)
-                            notaRef.setValue(notaActualizada)
-                            Toast.makeText(context, "Nota actualizada", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // La nota no existe, manejar el error
-                            Toast.makeText(context, "¿La nota no existe?", Toast.LENGTH_SHORT).show();
-                        }
-                    }catch (e:Exception){
-                        Toast.makeText(context, "Error al editar nota", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    // Manejar error
-                }
-            })
-        }
-
-    }
-
-    private fun ocultarNota(context: Context, id: String, titulo:String, descripcion:String){
-
-        // Obtener el ID del usuario actual
-        val user = Firebase.auth.currentUser?.uid
-
-        // Crear un objeto para guardar los datos de la nota
-        val nota = Nota(id, titulo, descripcion)
-
-        // Crear una referencia a la base de datos de Firebase
-        val database = FirebaseDatabase.getInstance()
-        val reference = database.getReference("NotasOcultas/${user}")
-
-        // Si el usuario es distinto de null guardar la nota en Firebase
-        if(user != null){
-            reference.child(nota.id!!).setValue(nota)
-                .addOnSuccessListener {
-                    // La nota se guardó con éxito
-                    Toast.makeText(context, "Nota oculta con éxito", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener { e ->
-                    // Hubo un error al guardar la nota
-                    Log.w(ContentValues.TAG, "Error al ocultar la nota", e)
-                    Toast.makeText(context, "Ha habido un problema al ocultar la nota", Toast.LENGTH_SHORT).show()
-                }
-        }else{
-            Toast.makeText(context, "Usuario null", Toast.LENGTH_SHORT).show()
-        }
-
-
     }
 
     override fun getItemCount(): Int {

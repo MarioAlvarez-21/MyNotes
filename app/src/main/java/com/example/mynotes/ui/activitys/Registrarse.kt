@@ -24,7 +24,6 @@ class Registrarse : AppCompatActivity() {
     private lateinit var email : String
     private lateinit var usuario :String
     private lateinit var repetirPassword : String
-    private lateinit var telefono :String
     private lateinit var password :String
     private lateinit var database: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,7 +68,7 @@ class Registrarse : AppCompatActivity() {
                             val userData = Usuario(usuario, email)
 
                             // Store the user data in Firebase Realtime Database
-                            database.child("Usuarios").child(userId!!).setValue(userData)
+                            database.child("Usuario").child(userId!!).child("Informacion").setValue(userData)
 
                             Toast.makeText(this, "Usuario registrado con éxito, revise su correo para activar la cuenta", Toast.LENGTH_SHORT).show()
                             finish()

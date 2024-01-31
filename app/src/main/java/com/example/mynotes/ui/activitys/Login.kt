@@ -65,12 +65,6 @@ class Login : AppCompatActivity() {
         }
     } //Acciones de los botones
 
-    private fun fullScreen(){
-        getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-    } //Quitar el statusbar y actionbar
-
     fun iniciarSesionUsuarioYContraseña(){
         auth = Firebase.auth
 
@@ -158,7 +152,7 @@ class Login : AppCompatActivity() {
                     val userObject = Usuario(usuario, correo)
 
                     // Obtener una referencia a la base de datos de Firebase
-                    val database = Firebase.database.getReference("Usuarios/${user?.uid}")
+                    val database = Firebase.database.getReference("Usuario/${user?.uid}/Informacion")
 
                     // Almacenar la información del usuario en la base de datos de Firebase
                     //, actualizar la interfaz de usuario con la información del usuario

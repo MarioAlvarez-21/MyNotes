@@ -1,105 +1,35 @@
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/FondoApp"
+    tools:context=".ui.activitys.Inicio">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:name="com.example.mynotes.ui.fragments.HomeFragment"
+        app:layout_constraintBottom_toTopOf="@+id/botonNavegationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/botonNavegationView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/FondoApp">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarInicio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/FondoApp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapsing_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    app:srcCompat="@drawable/publicalo"
-                    android:layout_gravity="center|top"/>
-
-                <ImageButton
-                    android:id="@+id/BT_CrearNota_Inicio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|end"
-                    android:background="@drawable/estilo_boton_transparente"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/agregar"
-                    app:tint="@color/blancoDifuminado" />
-
-                <ImageButton
-                    android:id="@+id/navegationDrawer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center"
-                    android:background="@drawable/estilo_boton_transparente"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/menu_hamburguesa"
-                    app:tint="@color/blancoDifuminado" />
-
-                <!-- Aquí puedes agregar tus otros elementos superiores -->
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <FrameLayout
-            android:id="@+id/frameLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/botonNavegationView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarInicio">
-
-        </FrameLayout>
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/botonNavegationView"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/estilo_menu_navegacion"
-            android:outlineAmbientShadowColor="@color/white"
-            android:paddingTop="15dp"
-            android:paddingBottom="1dp"
-            app:itemIconSize="20dp"
-            app:itemIconTint="@color/color_seleccionado"
-            app:itemTextColor="@color/color_seleccionado_navegation_icono"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_nav" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@drawable/estilo_drawer"
-        android:theme="@style/Theme.Material3.Dark"
-        app:headerLayout="@layout/encabezado_drawer"
+        android:layout_height="65dp"
+        android:background="@drawable/estilo_menu_navegacion"
+        android:outlineAmbientShadowColor="@color/white"
+        android:paddingTop="15dp"
+        android:paddingBottom="1dp"
         app:itemIconSize="20dp"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:menu="@menu/menu_drawer" />
+        app:itemIconTint="@color/color_seleccionado"
+        app:itemTextColor="@color/color_seleccionado_navegation_icono"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_nav" />
 
-</androidx.drawerlayout.widget.DrawerLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

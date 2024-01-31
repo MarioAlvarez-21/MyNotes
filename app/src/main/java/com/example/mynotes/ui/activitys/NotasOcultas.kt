@@ -33,7 +33,7 @@ class NotasOcultas : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var user = Firebase.auth.currentUser?.uid
     val database = FirebaseDatabase.getInstance()
-    val reference = database.getReference("NotasOcultas/${user}")
+    val reference = database.getReference("Usuario/${user}/NotasOcultas")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNotasOcultasBinding.inflate(layoutInflater)
@@ -96,7 +96,7 @@ class NotasOcultas : AppCompatActivity() {
 
         // Crear una referencia a la base de datos de Firebase
         val database = FirebaseDatabase.getInstance()
-        val reference = database.getReference("NotasOcultas/${user}")
+        val reference = database.getReference("Usuario/${user}/NotasOcultas")
 
         // Guardar la nota en Firebase
         reference.child(nota.id?:"").setValue(nota)
@@ -145,12 +145,6 @@ class NotasOcultas : AppCompatActivity() {
             val adapter = AdapterRecyclerViewNotasOcultas(notasList)
             binding.recyclerViewNotasOcultas.adapter = adapter
 
-    }
-
-    private fun fullScreen(){
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 
     private fun botones(){

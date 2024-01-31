@@ -40,12 +40,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun fullScreen(){
-        getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-    }
-
     fun navegarLogin(){
         binding.botonMain.setOnClickListener{
             startActivity(Intent(this, Login::class.java))

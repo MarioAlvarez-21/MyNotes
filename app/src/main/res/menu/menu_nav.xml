@@ -6,6 +6,6 @@
         android:icon="@drawable/hogar"/>
     <item android:id="@+id/favoritesmenu"
         android:title="•"
-        android:icon="@drawable/corazon"
+        android:icon="@drawable/salida"
         />
 </menu>
